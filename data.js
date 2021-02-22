@@ -10,18 +10,23 @@ export const data = [
             answers: [
               {
                 text: "asdlfl asf 1",
+                label: "asdlfl asf 1",
                 isCorrect: false,
               },
               {
                 text: "asdlfl asf 2",
+                label: "asdlfl asf 2",
                 isCorrect: false,
               },
               {
                 text: "asdlfl asf 3",
+                label: "asdlfl asf 3",
+
                 isCorrect: false,
               },
               {
                 text: "asdlfl asf4 ",
+                label: "asdlfl asf4 ",
                 isCorrect: true,
               },
             ],
@@ -31,6 +36,7 @@ export const data = [
             answers: [
               {
                 text: "asdlfl asf 1",
+                label: "asdlfl asf 1",
                 isCorrect: false,
               },
               {
