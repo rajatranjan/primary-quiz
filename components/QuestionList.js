@@ -7,27 +7,28 @@ import RadioButtonRN from "radio-buttons-react-native";
 const { width } = Dimensions.get("window");
 
 const RenderQuestion = ({ item, index, onSelection }) => {
-  // const [Result, setResult] = useState();
   let resultColor = "blue";
+  let disableRadioGroup = "auto";
+
   if (item.selectionState === true) {
     resultColor = "green";
+    disableRadioGroup = "none";
   } else if (item.selectionState === false) {
     resultColor = "red";
+    disableRadioGroup = "none";
   }
 
   return (
-    <View key={item.question}>
+    <View key={item.question} pointerEvents={disableRadioGroup}>
       <Text>{item.question}</Text>
 
-      {/* <RadioButtonRN data={item.answers} selectedBtn={(e) => console.log(e)} /> */}
       <RadioButtonRN
         data={item.answers}
-        // selectedBtn={(e) => answerHandler(e)}
-        // selectedBtn={(e) => setResult(e.isCorrect)}
         selectedBtn={(e) => {
           console.log(JSON.stringify(e));
           onSelection(e.isCorrect, index);
         }}
+        box={true}
       />
       <View
         style={{ width: 40, height: 50, backgroundColor: resultColor }}
@@ -66,29 +67,9 @@ const QuestionList = ({ questions }) => {
           onSelection={handleSelection}
         />
       )}
-      //   onSnapToItem={(index) => this.setState({ activeIndex: index })}
     />
   );
 };
-
-// const QuestionList = ({ questions }) => {
-//   return (
-//     <View>
-//       {questions.map((q) => {
-//         return (
-//           <View key={q.question}>
-//             <Text>{q.question}</Text>
-//             {q.answers.map((a) => (
-//               <View key={a.text}>
-//                 <Text>{a.text}</Text>
-//               </View>
-//             ))}
-//           </View>
-//         );
-//       })}
-//     </View>
-//   );
-// };
 
 export default QuestionList;
 
