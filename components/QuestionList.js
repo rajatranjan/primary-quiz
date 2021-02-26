@@ -6,6 +6,8 @@ import RadioButtonRN from "radio-buttons-react-native";
 
 const { width } = Dimensions.get("window");
 
+const wrongAns = [];
+
 const RenderQuestion = ({ item, index, onSelection }) => {
   let resultColor = "blue";
   let disableRadioGroup = "auto";
@@ -16,6 +18,8 @@ const RenderQuestion = ({ item, index, onSelection }) => {
   } else if (item.selectionState === false) {
     resultColor = "red";
     disableRadioGroup = "none";
+    wrongAns.push(item.question);
+    console.log("wrong questions", JSON.stringify(wrongAns));
   }
 
   return (
@@ -25,7 +29,7 @@ const RenderQuestion = ({ item, index, onSelection }) => {
       <RadioButtonRN
         data={item.answers}
         selectedBtn={(e) => {
-          console.log(JSON.stringify(e));
+          // console.log(JSON.stringify(e));
           onSelection(e.isCorrect, index);
         }}
         box={true}
@@ -47,6 +51,9 @@ const QuestionList = ({ questions }) => {
   const [questionsWithSelection, setQuestionsWithSelection] = useState(
     mappedQuestions
   );
+
+  // const [wrongAns, setWrongAns] = useState([]);
+
   const handleSelection = (selectionState, index) => {
     const dup = [...questionsWithSelection];
     dup[index].selectionState = selectionState;
